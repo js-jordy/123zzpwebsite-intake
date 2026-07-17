@@ -623,7 +623,7 @@
     <section class="intro" id="introSection">
       <div class="intro-kicker">Website intake</div>
       <h1>Vertel kort wat je nodig hebt</h1>
-      <p class="lead">Beantwoord een paar eenvoudige vragen. Het invullen duurt ongeveer twee minuten en je zit nergens aan vast.</p>
+      <p class="lead">Beantwoord een paar eenvoudige vragen binnen ongeveer twee minuten.</p>
     </section>
 
     <div class="progress-wrap" id="progressWrap">
@@ -934,10 +934,10 @@
           <div class="field-error" id="error-email" role="alert">Vul een geldig e-mailadres in.</div>
         </div>
 
-        <div class="field-block">
+        <div class="field-block" data-validate="telefoon">
           <label class="field-label" for="telefoon">Telefoonnummer</label>
-          <p class="field-help">Optioneel, zodat we je eventueel sneller kunnen bereiken.</p>
-          <input type="tel" id="telefoon" name="Telefoonnummer" autocomplete="tel" inputmode="tel">
+          <input type="tel" id="telefoon" name="Telefoonnummer" required autocomplete="tel" inputmode="tel">
+          <div class="field-error" id="error-telefoon" role="alert">Vul je telefoonnummer in.</div>
         </div>
 
         <div class="field-block" data-validate="start">
@@ -1167,9 +1167,11 @@
           const bedrijfsnaam = document.getElementById('bedrijfsnaam');
           const contactpersoon = document.getElementById('contactpersoon');
           const email = document.getElementById('email');
+          const telefoon = document.getElementById('telefoon');
           if (!bedrijfsnaam.value.trim()) fail(step.querySelector('[data-validate="bedrijfsnaam"]'), 'error-bedrijfsnaam', bedrijfsnaam);
           if (!contactpersoon.value.trim()) fail(step.querySelector('[data-validate="contactpersoon"]'), 'error-contactpersoon', contactpersoon);
           if (!email.value.trim() || !isValidEmail(email.value)) fail(step.querySelector('[data-validate="email"]'), 'error-email', email);
+          if (!telefoon.value.trim()) fail(step.querySelector('[data-validate="telefoon"]'), 'error-telefoon', telefoon);
           if (!form.querySelector('input[name="Gewenste start"]:checked')) fail(step.querySelector('[data-validate="start"]'), 'error-start');
           if (!document.getElementById('privacy').checked) fail(step.querySelector('[data-validate="privacy"]'), 'error-privacy', document.getElementById('privacy'));
         }
@@ -1244,10 +1246,7 @@
         params.set('Bedrijfsnaam', document.getElementById('bedrijfsnaam').value.trim());
         params.set('Contactpersoon', document.getElementById('contactpersoon').value.trim());
         params.set('E-mailadres', document.getElementById('email').value.trim());
-
-        const telefoon = document.getElementById('telefoon').value.trim();
-        if (telefoon) params.set('Telefoonnummer', telefoon);
-
+        params.set('Telefoonnummer', document.getElementById('telefoon').value.trim());
         params.set('Gewenste start', form.querySelector('input[name="Gewenste start"]:checked').value);
 
         const toelichting = document.getElementById('toelichting').value.trim();

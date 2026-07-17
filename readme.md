@@ -65,7 +65,7 @@ Voortgang: tekst `Stap X van 6` plus toegankelijke progressbar (`role="progressb
 | `Bedrijfsnaam` | ja | text | vrije tekst |
 | `Contactpersoon` | ja | text | vrije tekst |
 | `E-mailadres` | ja | email | e-mail |
-| `Telefoonnummer` | optioneel | tel | alleen als ingevuld |
+| `Telefoonnummer` | ja | tel | telefoonnummer |
 | `Gewenste start` | ja | single choice | `asap`, `one_two_months`, `later`, `unsure` |
 | `Toelichting` | optioneel | textarea | alleen als ingevuld |
 | `Privacy akkoord` | ja | checkbox | `yes` |
